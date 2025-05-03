@@ -23,14 +23,22 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install step
+        run: "install deps"
+
       - name: Build step
-        run: "deno task prepare"
+        run: "deno install"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
           project: "zqzq83-http-to-dns-51"
           entrypoint: "deno.json"
-          root: "."
+          root: ""
           
           
